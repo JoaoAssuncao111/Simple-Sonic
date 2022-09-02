@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+.game-screen{
+    width: 80%;
+    height: 500px;
+    border: 1px solid #333;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.crab{
+    position: absolute;
+    width: 120px ;   
+    bottom: 0;
+    animation: crab-ani 1.5s infinite linear;
+}
+
+.sonic{
+    width: 150px;
+    position: absolute;
+    bottom: 70px;
+    
+
+}
+
+.jump{
+    animation: sonic_jump_ani 0.5s  ease-out;
+}
+
+@keyframes sonic_jump_ani {
+
+    0%{
+        bottom: 0;
+    }
+    
+    40%,50%,60%{ bottom: 200px}
+
+    
+    100%{
+        bottom: 0px;
+    }
+    
+}
+
+@keyframes crab-ani {
+    from{
+        right: 0;
+    }
+
+    to{
+        right: 100%;
+    }
+}
