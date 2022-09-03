@@ -7,31 +7,45 @@
 
 
 .game-screen{
-    width: 80%;
+    width: 100%;
     height: 500px;
     border: 1px solid #333;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(#ADD8E6,#FFFFFF)
 }
 
 .crab{
     position: absolute;
     width: 120px ;   
     bottom: 0;
-    animation: crab-ani 1.5s infinite linear;
+    animation: crab-ani 1s infinite linear;
 }
 
 .sonic{
     width: 150px;
     position: absolute;
-    bottom: 70px;
+    bottom: 0;
     
-
+}
+.background{
+  width: 550px;
+  position: absolute;
+  animation: background_ani 4s infinite linear
 }
 
 .jump{
     animation: sonic_jump_ani 0.5s  ease-out;
+}
+
+@keyframes background_ani {
+    0%{
+        right:-550px
+    }
+    100%{
+        right: 100%;
+    }
 }
 
 @keyframes sonic_jump_ani {
@@ -50,11 +64,11 @@
 }
 
 @keyframes crab-ani {
-    from{
+    0%{
         right: 0;
     }
 
-    to{
+    100%{
         right: 100%;
     }
 }
