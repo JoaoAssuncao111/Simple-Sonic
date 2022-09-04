@@ -1,8 +1,10 @@
 const sonicModel = document.querySelector('.sonic')
 const crabModel = document.querySelector('.crab')
 const cloudModel = document.querySelector('.background')
-
+const score = 0
 const jumpDelay = 500
+//Lowest value crab's speed can have
+const minimumCrabSpeed = 0.75 
 const isGameOver = false
 document.addEventListener('keydown',jump)
 
@@ -51,6 +53,15 @@ const checkDeath = setInterval(() => {
 
 
 },10)
+
+
+//TODO: Fix random animation speed for every crab spawn
+function setRandomAnimationDuration() {
+    crabModel.style.animationDuration = Math.random() * (0.75 - minimumCrabSpeed) + minimumCrabSpeed + "s";
+  }
+  
+  crabModel.addEventListener('animationstart', setRandomAnimationDuration(),false)
+  crabModel.onanimationiteration = () => {score++}
 
 
 
