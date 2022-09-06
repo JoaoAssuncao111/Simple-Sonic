@@ -1,17 +1,29 @@
 const sonicModel = document.querySelector('.sonic')
 const crabModel = document.querySelector('.crab')
 const cloudModel = document.querySelector('.background')
-const score = 0
+let scoreElement = document.getElementById('score')
+
+let score = 0
 const jumpDelay = 500
 //Lowest value crab's speed can have
 const minimumCrabSpeed = 0.75 
 const isGameOver = false
+
 document.addEventListener('keydown',jump)
+
+function startGame(){
+
+}
+
+function restartGame(){
+
+}
 
 function jump(){
     sonicModel.src = './resources/sonic_jump.gif';
     sonicModel.style.width = 150
     sonicModel.classList.add('jump');
+
     document.removeEventListener('keydown',jump)
     setTimeout(() => {
         sonicModel.classList.remove('jump');
@@ -26,7 +38,7 @@ function jump(){
 
 const checkDeath = setInterval(() => {
 
-    const crabHitbox = crabModel.offsetLeft;
+    let crabHitbox = crabModel.offsetLeft;
     //Converting sonic height from string to numeral value
     const sonicHitbox = +window.getComputedStyle(sonicModel).bottom.replace('px', '')
     //End game condition, if crab hits sonic game ends
@@ -41,12 +53,9 @@ const checkDeath = setInterval(() => {
         sonicModel.style.width = '120px'
         sonicModel.style.marginLeft = '30px'
         document.removeEventListener('keydown',jump)
-        //to fix: Clouds reset on death
-        cloudModel.style.animation = 'none'
     
-
         isGameOver = true
-        
+        document.getElementById('gameOverScreen').style.display = 'block'
         clearInterval(checkDeath)
 
     }
@@ -61,7 +70,10 @@ function setRandomAnimationDuration() {
   }
   
   crabModel.addEventListener('animationstart', setRandomAnimationDuration(),false)
-  crabModel.onanimationiteration = () => {score++}
+  crabModel.onanimationiteration = () => {
+    scoreElement.innerHTML = "Score: " + ++score
+
+    }
 
 
 

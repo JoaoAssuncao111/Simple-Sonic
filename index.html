@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" conent="width=device-width,initial-scale=1.0">
@@ -9,16 +10,36 @@
     <title> Simple Sonic</title>
 </head>
 <body>
-    <div class="game-screen">
+    
 
+    <div class="score" id="score" style="font-size: 8em;">Score: 0</div> 
+    <div class="game-screen">
+        
         <img src="./resources/crab.gif" class="crab">
         <img src="./resources/Sonic.gif" class="sonic">
         <img src="./resources/background.png" class="background">
-        <text class="score"></text>
+
+        <div id="introScreen">
+            <div id="introScreenContent">
+            <h1>Simple Sonic</h1> 
+            <div id="startGameButton" class="button" onclick="startGame()">Start</div>
+            </div>
+        </div>
+    
+        <div id="gameOverScreen">
+            <div id="gameOverScreenContent">
+                <h1>You Lose</h1> 
+                <button type="button" class="btn btn-danger btn-lg">Play Again</div>
+            </div>
+        </div>
+
+        
+        
     </div>
 
     <div class="buttons">
         <button class = "button">Play Again</button>
     </div>
+   
 </body>
 </html>
