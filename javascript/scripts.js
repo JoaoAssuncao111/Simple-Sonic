@@ -1,22 +1,25 @@
 const sonicModel = document.querySelector('.sonic')
-const crabModel = document.querySelector('.crab')
+let crabModel = document.querySelector('.crab')
 const cloudModel = document.querySelector('.background')
 let scoreElement = document.getElementById('score')
+let gameOverScreenElement = document.getElementById('gameOverScreen')
 
 let score = 0
 const jumpDelay = 500
 //Lowest value crab's speed can have
-const minimumCrabSpeed = 0.75 
+const minimumCrabSpeed = 0.70
+const maxCrabSpeed = 1
 const isGameOver = false
 
 document.addEventListener('keydown',jump)
 
 function startGame(){
-
+    location. reload()
 }
 
 function restartGame(){
-
+    location. reload()
+    gameOverScreenElement.style.display = 'none'
 }
 
 function jump(){
@@ -43,19 +46,18 @@ const checkDeath = setInterval(() => {
     const sonicHitbox = +window.getComputedStyle(sonicModel).bottom.replace('px', '')
     //End game condition, if crab hits sonic game ends
     if (crabHitbox <= 135 && sonicHitbox < 65 && crabHitbox > 0){
-
+        gameOverScreenElement.style.display = 'block'
         crabModel.style.animation = 'none'
         crabModel.style.left = `${crabHitbox}px`
         sonicModel.style.animation = 'none'
         sonicModel.style.bottom= `${sonicHitbox}px`
-
         sonicModel.src = './resources/sonic_death.gif'
         sonicModel.style.width = '120px'
         sonicModel.style.marginLeft = '30px'
         document.removeEventListener('keydown',jump)
     
         isGameOver = true
-        document.getElementById('gameOverScreen').style.display = 'block'
+        
         clearInterval(checkDeath)
 
     }
@@ -66,14 +68,16 @@ const checkDeath = setInterval(() => {
 
 //TODO: Fix random animation speed for every crab spawn
 function setRandomAnimationDuration() {
-    crabModel.style.animationDuration = Math.random() * (0.75 - minimumCrabSpeed) + minimumCrabSpeed + "s";
+    crabModel.style.animationDuration = Math.random() * (maxCrabSpeed - minimumCrabSpeed) + minimumCrabSpeed + "s";
   }
   
-  crabModel.addEventListener('animationstart', setRandomAnimationDuration(),false)
   crabModel.onanimationiteration = () => {
+    //setRandomAnimationDuration() TODO Debug crabs spawning mid-screen. 
+    //Each time a crab leaves the screen the score increments
     scoreElement.innerHTML = "Score: " + ++score
 
     }
+
 
 
 
